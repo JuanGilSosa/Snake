@@ -19,9 +19,18 @@ class Board:
     def update_(self):
         pg.display.update()
 
-    def new_pos(self, color_snake: tuple, pos_x: int, pos_y: int):
+    def new_pos(self, color_snake: tuple, pos_x: float, pos_y: float):
         pg.draw.rect(self.__surface, color_snake, [pos_x, pos_y, 10, 10])
 
     # Setea el color del background
     def set_fill(self, color: tuple):
         self.__surface.fill(color)
+
+    def get_width(self) -> int:
+        return self.__width
+
+    def get_height(self) -> int:
+        return self.__height
+
+    def get_surface(self) -> pg.Surface:
+        return self.__surface
