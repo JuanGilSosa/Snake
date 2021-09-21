@@ -1,3 +1,6 @@
 /.idea
+*.pyc
 /__pycache__
 /venv
+*/Models/__pycache__/Board.cpython-39.pyc
+
