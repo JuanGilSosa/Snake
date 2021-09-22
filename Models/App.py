@@ -8,9 +8,9 @@ class App:
         pass
 
     def start(self):
-        snake = Snake((0, 0, 0), 10, 1, 10, [], [])
+        snake = Snake((0, 0, 0), 10, 0, 10, [], [])
         board = Board(snake.color)
-        food  = Food(board.get_width(), snake.block)
+        food  = Food(board.get_width(), board.get_height(), snake.block)
         x1 = board.get_width() / 2
         y1 = board.get_height() / 2
 
@@ -26,6 +26,7 @@ class App:
 
         while not game_over:
             # Este bucle for, es el ciclo del juego, todos lo tienen
+            board.update_()
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
@@ -57,8 +58,8 @@ class App:
 
             # seteamos color, para que cuando se realice el movimiento de la serpiente
             board.set_fill((255, 255, 255))
-            board.new_pos(food.color, food.foodX, food.foodY) # food
-            board.new_pos(snake.color, x1, y1) # snake
+            board.draw(food.color, food.foodX, food.foodY) # food
+            board.draw(snake.color, x1, y1) # snake
 
             snake.the_body(x1, y1)
             if len(snake.body) > snake.length:
@@ -69,12 +70,11 @@ class App:
                     game_over = True
 
             snake.eat(board)
+
             board.update_()
             if x1 == food.foodX and y1 == food.foodY:
-                food.random(board.get_width(), snake.block)
+                food.random(board.get_width(), board.get_height(), snake.block)
                 print("BUEN PROVECHO")
-
-
 
             # Este método representarían los FPS del juego
             clock.tick(snake.speed)

@@ -3,17 +3,21 @@
 # 12 September 2021 09:40 #
 ###########################
 
-from dataclasses import dataclass
 from Models.Board import Board
 
-@dataclass
 class Snake:
-    color : tuple
-    block : int
-    length: int
-    speed : int
-    head  : list
-    body  : list
+    def __init__(self, color: tuple,
+                 block: int,
+                 length: int,
+                 speed: int,
+                 head: list, body: list
+                 ):
+        self.color = color
+        self.block = block
+        self.length = length
+        self.speed = speed
+        self.head = head
+        self.body = body
 
     def the_body(self, x1, y1):
         # Expresa donde esta parada la cabeza
@@ -23,4 +27,4 @@ class Snake:
 
     def eat(self, board: Board):
         for x in self.body:
-            board.new_pos(self.color, x[0], x[1])
+            board.draw(self.color, x[0], x[1])
