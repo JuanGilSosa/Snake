@@ -23,6 +23,7 @@ class Snake:
         # Expresa donde esta parada la cabeza
         self.head.append(x1)
         self.head.append(y1)
+        print(self.head)
         self.body.append(self.head)
 
     def eat(self, board: Board):
