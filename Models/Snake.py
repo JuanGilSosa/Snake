@@ -20,10 +20,10 @@ class Snake:
         self.body = body
 
     def the_body(self, x1, y1):
+        self.head = []
         # Expresa donde esta parada la cabeza
         self.head.append(x1)
         self.head.append(y1)
-        print(self.head)
         self.body.append(self.head)
 
     def eat(self, board: Board):

@@ -9,9 +9,10 @@ class App:
         pass
 
     def start(self):
-        snake = Snake((0, 0, 0), 10, 0, 10, [], [])
-        board = Board(snake.color)
+        snake = Snake((0, 0, 0), 10, 1, 10, [], [])
+        board = Board(600, 400)
         food = Food(board.get_width(), board.get_height(), snake.block)
+
         x1 = board.get_width() / 2
         y1 = board.get_height() / 2
 
@@ -59,9 +60,7 @@ class App:
             y1 += y1_change
 
             # seteamos color, para que cuando se realice el movimiento de la serpiente
-
             board.draw(food.color, food.foodX, food.foodY)  # food
-            board.draw(snake.color, x1, y1) # snake
 
             snake.the_body(x1, y1)
 
@@ -75,7 +74,9 @@ class App:
             snake.eat(board)
 
             board.update_()
+
             if x1 == food.foodX and y1 == food.foodY:
+                print("YUMI")
                 food.random(board.get_width(), board.get_height(), snake.block)
                 snake.length += 1
 

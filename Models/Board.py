@@ -6,12 +6,12 @@ import pygame as pg
 
 
 class Board:
-    __width = 400
-    __height = 300
 
-    def __init__(self, color_snake: tuple):
+    def __init__(self, width: int, height: int):
         pg.init()
         pg.display.set_caption("VIBORITA")
+        self.__width = width
+        self.__height = height
         self.__surface = pg.display.set_mode((self.__width, self.__height))
         self.__surface.fill((255, 255, 255))
         self.update_()
