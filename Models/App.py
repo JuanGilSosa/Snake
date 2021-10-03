@@ -11,10 +11,10 @@ class App:
     def start(self):
         snake = Snake((0, 0, 0), 10, 1, 10, [], [])
         board = Board(600, 400)
-        food = Food(board.get_width(), board.get_height(), snake.block)
+        food = Food((board.get_width()), (board.get_height()), snake.block)
 
-        x1 = board.get_width() / 2
-        y1 = board.get_height() / 2
+        x1 = (board.get_width())  / 2
+        y1 = (board.get_height()) / 2
 
         x1_change = 0
         y1_change = 0
@@ -28,13 +28,14 @@ class App:
 
         while not game_over:
             board.set_fill((255, 255, 255))
+            board.draw_border()
+            board.draw_text((), 10, 10, snake.length-1)
             # Este bucle for, es el ciclo del juego, todos lo tienen
             board.update_()
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
                 if event.type == pg.KEYDOWN:
-                    print("Key Value = ", key_pressed)
                     if (event.key == pg.K_LEFT) and (key_pressed != pg.K_RIGHT):
                         key_pressed = pg.K_LEFT
                         x1_change = -snake.block
@@ -52,8 +53,8 @@ class App:
                         y1_change = +snake.block
                         x1_change = 0
 
-            # Game Over?
-            if x1 > board.get_width() or x1 < 0 or y1 > board.get_height() or y1 < 0:
+            # Game Over si toca los bordes
+            if x1 > (board.get_width()) or x1 < 0 or y1 > (board.get_height()) or y1 < 0:
                 game_over = True
 
             x1 += x1_change
@@ -75,8 +76,8 @@ class App:
 
             board.update_()
 
+            # Si se come la comida, printeamos un random para la comida y aumentamos el length de la snake
             if x1 == food.foodX and y1 == food.foodY:
-                print("YUMI")
                 food.random(board.get_width(), board.get_height(), snake.block)
                 snake.length += 1
 
